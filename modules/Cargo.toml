@@ -29,6 +29,7 @@ std = [
     "regex/std",
     "subtle-encoding/std",
     "sha2/std",
+    "ics23/std",
 ]
 eyre_tracer = ["flex-error/eyre_tracer"]
 mocks = [ "tendermint-testgen", "sha2" ]
@@ -36,8 +37,8 @@ mocks = [ "tendermint-testgen", "sha2" ]
 [dependencies]
 # Proto definitions for all IBC-related interfaces, e.g., connections or channels.
 ibc-proto = { version = "0.9.0", path = "../proto" }
-ics23 = "0.6.5"
-#ics23 = { version = "0.6.5", default-features = false, git = "https://github.com/confio/ics23.git", branch = "master" }
+#ics23 = "0.6.5"
+ics23 = { version = "0.6.5", default-features = false, git = "https://github.com/confio/ics23.git", branch = "master" }
 chrono = { version = "0.4.19", default-features = false, features = ["serde", "clock"] }
 serde_derive = "1.0.104"
 serde = { version = "1.0.125", default-features = false, features = ["derive"]  }
