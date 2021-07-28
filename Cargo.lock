@@ -1357,7 +1357,6 @@ dependencies = [
  "tendermint-rpc",
  "tendermint-testgen",
  "test-env-log",
- "thiserror",
  "tracing",
  "tracing-subscriber 0.2.19",
 ]
