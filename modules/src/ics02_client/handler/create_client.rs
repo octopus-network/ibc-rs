@@ -33,6 +33,7 @@ pub fn process(
     let client_id = ClientId::new(msg.client_state().client_type(), id_counter).map_err(|e| {
         Error::client_identifier_constructor(msg.client_state().client_type(), id_counter, e)
     })?;
+    let client_type = msg.client_state.client_type();
 
     output.log(format!(
         "success: generated new client identifier: {}",
@@ -48,6 +49,7 @@ pub fn process(
 
     let event_attributes = Attributes {
         client_id,
+        client_type,
         ..Default::default()
     };
     output.emit(IbcEvent::CreateClient(event_attributes.into()));

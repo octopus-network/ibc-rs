@@ -28,7 +28,11 @@ impl ClientDef for GrandpaClient {
         client_state: Self::ClientState,
         header: Self::Header,
     ) -> Result<(Self::ClientState, Self::ConsensusState), Error> {
-        unimplemented!()
+        Ok((
+            client_state.with_header(header.clone()),
+            ConsensusState::from(header),
+        ))
+        // unimplemented!()
     }
 
     fn verify_client_consensus_state(
@@ -134,11 +138,15 @@ impl ClientDef for GrandpaClient {
 
     fn verify_upgrade_and_update_state(
         &self,
-        _client_state: &Self::ClientState,
-        _consensus_state: &Self::ConsensusState,
+        client_state: &Self::ClientState,
+        consensus_state: &Self::ConsensusState,
         _proof_upgrade_client: MerkleProof,
         _proof_upgrade_consensus_state: MerkleProof,
     ) -> Result<(Self::ClientState, Self::ConsensusState), Error> {
-        todo!()
+        // TODO
+        Ok((
+            client_state.clone(),
+            consensus_state.clone(),
+        ))
     }
 }

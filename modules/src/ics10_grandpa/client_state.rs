@@ -7,6 +7,7 @@ use ibc_proto::ibc::lightclients::grandpa::v1::ClientState as RawClientState;
 use crate::ics02_client::client_state::AnyClientState;
 use crate::ics02_client::client_type::ClientType;
 use crate::ics10_grandpa::error::Error;
+use crate::ics10_grandpa::header::Header;
 use crate::ics24_host::identifier::ChainId;
 use crate::Height;
 use serde::{Deserialize, Serialize};
@@ -30,6 +31,16 @@ impl ClientState {
 
     pub fn latest_height(&self) -> Height {
         self.latest_height
+    }
+
+    pub fn with_header(self, h: Header) -> Self {
+        // TODO: Clarify which fields should update.
+        ClientState {
+            latest_height: self
+                .latest_height
+                .with_revision_height(u64::from(h.height)),
+            ..self
+        }
     }
 }
 

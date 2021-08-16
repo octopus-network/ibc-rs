@@ -308,7 +308,7 @@ impl From<ClientMisbehaviour> for IbcEvent {
 
 /// Signals a recent upgrade of an on-chain client (IBC Client).
 #[derive(Clone, Debug, PartialEq, Eq, PartialOrd, Ord, Hash, Deserialize, Serialize)]
-pub struct UpgradeClient(Attributes);
+pub struct UpgradeClient(pub Attributes);
 
 impl UpgradeClient {
     pub fn set_height(&mut self, height: Height) {
